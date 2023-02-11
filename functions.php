@@ -109,8 +109,16 @@ add_action( 'after_setup_theme', 'school_setup' );
  *
  * @global int $content_width
  */
+// function school_content_width() {
+// 	$GLOBALS['content_width'] = apply_filters( 'school_content_width', 640 );
+// }
+// add_action( 'after_setup_theme', 'school_content_width', 0 );
+//from fwd starter theme
 function school_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'school_content_width', 640 );
+	// This variable is intended to be overruled from themes.
+	// Open WPCS issue: {@link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/1043}.
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+	$GLOBALS['content_width'] = apply_filters( 'school_content_width', 960 );
 }
 add_action( 'after_setup_theme', 'school_content_width', 0 );
 
@@ -150,6 +158,11 @@ function school_scripts() {
 add_action( 'wp_enqueue_scripts', 'school_scripts' );
 
 /**
+ * Enqueue scripts and styles.
+ */
+
+
+/**
  * Implement the Custom Header feature.
  */
 require get_template_directory() . '/inc/custom-header.php';
@@ -176,3 +189,17 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+// Change excerpt length to 20 characters
+function fwd_excerpt_lenght($length) {
+	return 20;
+}
+
+add_filter('excerpt_length', 'fwd_excerpt_lenght', 999 );
+
+//Change the excerpt more to a link
+function fwd_excerpt_more ($more) {
+		$more = '...<a class="read-more" href="'. esc_url(get_permalink()) .'">Continue Reading about '. get_the_title().'</a>';
+		return $more;
+}
+
+add_filter('excerpt_more', 'fwd_excerpt_more');

@@ -203,3 +203,129 @@ function fwd_excerpt_more ($more) {
 }
 
 add_filter('excerpt_more', 'fwd_excerpt_more');
+
+/*
+CUSTOM POST TYPE & TAXONOMY
+*/
+
+//register CPT
+    function staff_custom_post_types() {
+        $labels = array(
+            'name'               => _x( 'Staff', 'post type general name'  ),
+            'singular_name'      => _x( 'Staff', 'post type singular name'  ),
+            'menu_name'          => _x( 'Staff', 'admin menu'  ),
+            'name_admin_bar'     => _x( 'Staff', 'add new on admin bar' ),
+            'add_new'            => _x( 'Add New', 'Staff' ),
+            'add_new_item'       => __( 'Add New Staff' ),
+            'new_item'           => __( 'New Staff' ),
+            'edit_item'          => __( 'Edit Staff' ),
+            'view_item'          => __( 'View Staff'  ),
+            'all_items'          => __( 'All Staff' ),
+            'search_items'       => __( 'Search Staff' ),
+            'parent_item_colon'  => __( 'Parent Staff:' ),
+            'not_found'          => __( 'No Staff found.' ),
+            'not_found_in_trash' => __( 'No Staff found in Trash.' ),
+        );
+
+        $args = array(
+            'labels'             => $labels,
+            'public'             => true,
+            'publicly_queryable' => true,
+            'show_ui'            => true,
+            'show_in_menu'       => true,
+            'show_in_nav_menus'  => true,
+            'show_in_admin_bar'  => true,
+            'show_in_rest'       => true,        
+            'query_var'          => true,
+            'has_archive'        => true,
+            'rewrite'            => array( 'slug' => 'staff' ),
+            'capability_type'    => 'post',
+            'hierarchical'       => false,
+            'menu_position'      => 5,
+            'menu_icon'          => 'dashicons-archive',
+            'supports'           => array( 'title' ),
+        );
+        register_post_type( 'school-staff', $args );
+    }
+    add_action( 'init', 'staff_custom_post_types' );
+    //Custom Post Type for Staff
+
+
+/*
+TAXONOMIES
+*/
+	function faculty_staff_taxonomy() {
+		// Add Faculty Category taxonomy
+		$labels = array(
+			'name'              => _x( 'Faculty Categories', 'taxonomy general name' ),
+			'singular_name'     => _x( 'Faculty Category', 'taxonomy singular name' ),
+			'search_items'      => __( 'Search Faculty Categories' ),
+			'all_items'         => __( 'All Faculty Category' ),
+			'parent_item'       => __( 'Parent Faculty Category' ),
+			'parent_item_colon' => __( 'Parent Faculty Category:' ),
+			'edit_item'         => __( 'Edit Faculty Category' ),
+			'view_item'         => __( 'View Faculty Category' ),
+			'update_item'       => __( 'Update FacultyCategory' ),
+			'add_new_item'      => __( 'Add New Faculty Category' ),
+			'new_item_name'     => __( 'New Faculty Category Name' ),
+			'menu_name'         => __( 'Faculty Category' ),
+		);
+		$args = array(
+			'hierarchical'      => true,
+			'labels'            => $labels,
+			'show_ui'           => true,
+			'show_in_menu'      => true,
+			'show_in_nav_menu'  => true,
+			'show_in_rest'      => true,        
+			'show_admin_column' => true,
+			'query_var'         => true,
+			'rewrite'           => array( 'slug' => 'faculty' ),
+		);
+		register_taxonomy( 'faculty_staff_categories', array( 'school-staff' ), $args );
+	}
+	add_action( 'init', 'faculty_staff_taxonomy');
+
+
+	function administrative_staff_taxonomy() {
+		// Add Administrtive Category taxonomy
+		$labels = array(
+			'name'              => _x( 'Administrative Categories', 'taxonomy general name' ),
+			'singular_name'     => _x( 'Administrative Category', 'taxonomy singular name' ),
+			'search_items'      => __( 'Search Administrative Categories' ),
+			'all_items'         => __( 'All Administrative Category' ),
+			'parent_item'       => __( 'Parent Administrative Category' ),
+			'parent_item_colon' => __( 'Parent Administrative Category:' ),
+			'edit_item'         => __( 'Edit Administrative Category' ),
+			'view_item'         => __( 'View Administrative Category' ),
+			'update_item'       => __( 'Update Administrative Category' ),
+			'add_new_item'      => __( 'Add New Administrative Category' ),
+			'new_item_name'     => __( 'New Administrative Category Name' ),
+			'menu_name'         => __( 'Administrative Category' ),
+		);
+		$args = array(
+			'hierarchical'      => true,
+			'labels'            => $labels,
+			'show_ui'           => true,
+			'show_in_menu'      => true,
+			'show_in_nav_menu'  => true,
+			'show_in_rest'      => true,        
+			'show_admin_column' => true,
+			'query_var'         => true,
+			'rewrite'           => array( 'slug' => 'administrative' ),
+		);
+		register_taxonomy( 'administrative_staff_categories', array( 'school-staff' ), $args );
+	}
+	add_action( 'init', 'administrative_staff_taxonomy');
+    
+
+    function school_rewrite_flush() {
+        staff_custom_post_types();
+		faculty_staff_taxonomy();
+		administrative_staff_taxonomy();
+        flush_rewrite_rules();
+        
+    }
+    add_action( 'after_switch_theme', 'fwd_rewrite_flush' );
+
+
+	?>

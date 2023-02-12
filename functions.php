@@ -212,7 +212,7 @@ add_filter('excerpt_more', 'fwd_excerpt_more');
 CUSTOM POST TYPE & TAXONOMY
 */
 
-//register CPT
+//register CPT for Students
     function staff_custom_post_types() {
         $labels = array(
             'name'               => _x( 'Staff', 'post type general name'  ),
@@ -254,7 +254,7 @@ CUSTOM POST TYPE & TAXONOMY
     add_action( 'init', 'staff_custom_post_types' );
     //Custom Post Type for Staff
 
-//register CPT
+//register CPT 
 function students_custom_post_types() {
 	$labels = array(
 		'name'               => _x( 'Student', 'post type general name'  ),
@@ -302,8 +302,9 @@ add_action( 'init', 'students_custom_post_types' );
 /*
 TAXONOMIES
 */
+	// Add Faculty Category taxonomy
 	function faculty_staff_taxonomy() {
-		// Add Faculty Category taxonomy
+		
 		$labels = array(
 			'name'              => _x( 'Faculty Categories', 'taxonomy general name' ),
 			'singular_name'     => _x( 'Faculty Category', 'taxonomy singular name' ),
@@ -333,9 +334,9 @@ TAXONOMIES
 	}
 	add_action( 'init', 'faculty_staff_taxonomy');
 
-
+	// Add Administrtive Category taxonomy
 	function administrative_staff_taxonomy() {
-		// Add Administrtive Category taxonomy
+		
 		$labels = array(
 			'name'              => _x( 'Administrative Categories', 'taxonomy general name' ),
 			'singular_name'     => _x( 'Administrative Category', 'taxonomy singular name' ),
@@ -364,7 +365,74 @@ TAXONOMIES
 		register_taxonomy( 'administrative_staff_categories', array( 'school-staff' ), $args );
 	}
 	add_action( 'init', 'administrative_staff_taxonomy');
-    
+
+
+    // Add Designer Category taxonomy
+	function designer_student_taxonomy() {
+	
+		$labels = array(
+			'name'              => _x( 'Designer Categories', 'taxonomy general name' ),
+			'singular_name'     => _x( 'Designer Category', 'taxonomy singular name' ),
+			'search_items'      => __( 'Search Designer Categories' ),
+			'all_items'         => __( 'All Designer Category' ),
+			'parent_item'       => __( 'Parent Designer Category' ),
+			'parent_item_colon' => __( 'Parent Designer Category:' ),
+			'edit_item'         => __( 'Edit Designer Category' ),
+			'view_item'         => __( 'View Designer Category' ),
+			'update_item'       => __( 'Update Designer Category' ),
+			'add_new_item'      => __( 'Add New Designer Category' ),
+			'new_item_name'     => __( 'New Designer Category Name' ),
+			'menu_name'         => __( 'Designer Category' ),
+		);
+		$args = array(
+			'hierarchical'      => true,
+			'labels'            => $labels,
+			'show_ui'           => true,
+			'show_in_menu'      => true,
+			'show_in_nav_menu'  => true,
+			'show_in_rest'      => true,        
+			'show_admin_column' => true,
+			'query_var'         => true,
+			'rewrite'           => array( 'slug' => 'designer' ),
+		);
+		register_taxonomy( 'designer_student_categories', array( 'school-students' ), $args );
+	}
+	add_action( 'init', 'designer_student_taxonomy');
+
+
+	    // Add Developer Category taxonomy
+		function developer_student_taxonomy() {
+	
+			$labels = array(
+				'name'              => _x( 'Developer Categories', 'taxonomy general name' ),
+				'singular_name'     => _x( 'Developer Category', 'taxonomy singular name' ),
+				'search_items'      => __( 'Search Developer Categories' ),
+				'all_items'         => __( 'All Developer Category' ),
+				'parent_item'       => __( 'Parent Developer Category' ),
+				'parent_item_colon' => __( 'Parent Developer Category:' ),
+				'edit_item'         => __( 'Edit Developer Category' ),
+				'view_item'         => __( 'View Developer Category' ),
+				'update_item'       => __( 'Update Developer Category' ),
+				'add_new_item'      => __( 'Add New Developer Category' ),
+				'new_item_name'     => __( 'New Developer Category Name' ),
+				'menu_name'         => __( 'Developer Category' ),
+			);
+			$args = array(
+				'hierarchical'      => true,
+				'labels'            => $labels,
+				'show_ui'           => true,
+				'show_in_menu'      => true,
+				'show_in_nav_menu'  => true,
+				'show_in_rest'      => true,        
+				'show_admin_column' => true,
+				'query_var'         => true,
+				'rewrite'           => array( 'slug' => 'developer' ),
+			);
+			register_taxonomy( 'developer_student_categories', array( 'school-students' ), $args );
+		}
+		add_action( 'init', 'developer_student_taxonomy');
+
+
 
     function school_rewrite_flush() {
         staff_custom_post_types();
@@ -380,29 +448,5 @@ TAXONOMIES
 Block editor for Students CPT / Add Block Templates to Pages
  */
 
- function students_block_editor_templates() {
-    // Replace '14' with the Page ID
-    if ( isset( $_GET['post'] ) && '85' == $_GET['post'] ) {
-        $post_type_object = get_post_type_object( 'page' );
-        $post_type_object->template = array(
-            // define blocks here...
 
-			array( 
-				'core/paragraph', 
-				array( 
-					'placeholder' => 'Add your introduction here...'
-				) 
-			),
-		
-			array( 
-				'core/shortcode', 
-				array( 
-					'placeholder' => 'Add your shortcode here...'
-				)
-				),
-        );
-		$post_type_object->template_lock = 'all';
-    }
-}
-add_action( 'init', 'students_block_editor_templates' );
 	?>

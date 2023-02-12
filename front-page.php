@@ -21,18 +21,43 @@ get_header();
     while ( have_posts()):
         the_post();
         the_title();
-        
-        
-        
+              
         get_template_part('template-parts/content','page');
+    
+        ?>
 
+        <section class="recent-news">
+            <h2><?php esc_html_e('Recent News', 'school')?></h2>
+            <?php
+            $args = array (
+                'post_type' => 'post',
+                'post_per_page' => 3
+            );
 
+            $blog_query = new WP_Query($args);
+            if($blog_query -> have_posts() ) {
+                while($blog_query -> have_post() ) {
+                    $blog_query -> get_post();
+                    ?>
+                    <article>                        
+                        <a href="<?php the_permalink(); ?>">
+                            <h3><?php the_title(); ?></h3>
+                            <img src="<?php the_post_thumbnail('thumbnail'); ?>">
+                        </a>
+                    </article>
+                    <?php
+                }
+                wp_reset_postdata();            
+            }
+            
+            ?>
+        </section>
 
-
+        <?php
     endwhile;
     ?>
     </main>
 
     <?php
-// get_sidebar();
-// get_footer();
+get_sidebar();
+get_footer();

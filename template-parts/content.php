@@ -29,10 +29,11 @@
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 
-	<?php school_post_thumbnail(); ?>
+	
 
 	<div class="entry-content">
 		<?php
+		
 		the_content(
 			sprintf(
 				wp_kses(
@@ -60,4 +61,6 @@
 	<footer class="entry-footer">
 		<?php school_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
-</article><!-- #post-<?php the_ID(); ?> -->
+</article>
+
+<?php

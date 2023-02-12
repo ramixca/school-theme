@@ -9,7 +9,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package school-theme
+ * @package fwd-school-theme
  */
 
 get_header();
@@ -22,6 +22,8 @@ get_header();
         the_post();
         the_title();
         
+        
+        
         get_template_part('template-parts/content','page');
 
 
@@ -33,4 +35,4 @@ get_header();
 
     <?php
 // get_sidebar();
-get_footer();
+// get_footer();

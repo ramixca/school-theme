@@ -46,6 +46,10 @@ function school_setup() {
 		*/
 	add_theme_support( 'post-thumbnails' );
 
+
+	/* Add Wide Width and Full Width for image support*/
+	add_theme_support('align-wide');
+
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
@@ -190,11 +194,11 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 }
 
 // Change excerpt length to 20 characters
-function fwd_excerpt_lenght($length) {
+function school_excerpt_lenght($length) {
 	return 20;
 }
 
-add_filter('excerpt_length', 'fwd_excerpt_lenght', 999 );
+add_filter('excerpt_length', 'school_excerpt_lenght', 999 );
 
 //Change the excerpt more to a link
 function fwd_excerpt_more ($more) {

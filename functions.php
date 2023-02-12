@@ -254,6 +254,50 @@ CUSTOM POST TYPE & TAXONOMY
     add_action( 'init', 'staff_custom_post_types' );
     //Custom Post Type for Staff
 
+//register CPT
+function students_custom_post_types() {
+	$labels = array(
+		'name'               => _x( 'Student', 'post type general name'  ),
+		'singular_name'      => _x( 'Student', 'post type singular name'  ),
+		'menu_name'          => _x( 'Student', 'admin menu'  ),
+		'name_admin_bar'     => _x( 'Student', 'add new on admin bar' ),
+		'add_new'            => _x( 'Add New', 'Student' ),
+		'add_new_item'       => __( 'Add New Student' ),
+		'new_item'           => __( 'New Student' ),
+		'edit_item'          => __( 'Edit Student' ),
+		'view_item'          => __( 'View Student'  ),
+		'all_items'          => __( 'All Student' ),
+		'search_items'       => __( 'Search Student' ),
+		'parent_item_colon'  => __( 'Parent Student:' ),
+		'not_found'          => __( 'No Student found.' ),
+		'not_found_in_trash' => __( 'No Student found in Trash.' ),
+	);
+
+	$args = array(
+		'labels'             => $labels,
+		'public'             => true,
+		'publicly_queryable' => true,
+		'show_ui'            => true,
+		'show_in_menu'       => true,
+		'show_in_nav_menus'  => true,
+		'show_in_admin_bar'  => true,
+		'show_in_rest'       => true,        
+		'query_var'          => true,
+		'has_archive'        => true,
+		'rewrite'            => array( 'slug' => 'student' ),
+		'capability_type'    => 'post',
+		'hierarchical'       => false,
+		'menu_position'      => 6,
+		'menu_icon'          => 'dashicons-heart',
+		'supports'           => array( 'title' ),
+		// 'template_lock'      => 'all'
+	);
+	register_post_type( 'school-students', $args );
+}
+add_action( 'init', 'students_custom_post_types' );
+//Custom Post Type for students
+
+
 
 /*
 TAXONOMIES
@@ -332,4 +376,33 @@ TAXONOMIES
     add_action( 'after_switch_theme', 'fwd_rewrite_flush' );
 
 
+/*
+Block editor for Students CPT / Add Block Templates to Pages
+ */
+
+ function students_block_editor_templates() {
+    // Replace '14' with the Page ID
+    if ( isset( $_GET['post'] ) && '85' == $_GET['post'] ) {
+        $post_type_object = get_post_type_object( 'page' );
+        $post_type_object->template = array(
+            // define blocks here...
+
+			array( 
+				'core/paragraph', 
+				array( 
+					'placeholder' => 'Add your introduction here...'
+				) 
+			),
+		
+			array( 
+				'core/shortcode', 
+				array( 
+					'placeholder' => 'Add your shortcode here...'
+				)
+				),
+        );
+		$post_type_object->template_lock = 'all';
+    }
+}
+add_action( 'init', 'students_block_editor_templates' );
 	?>

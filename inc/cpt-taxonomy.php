@@ -90,7 +90,7 @@ add_action( 'init', 'students_custom_post_types' );
 TAXONOMIES
 */
 	// Add Faculty Category taxonomy
-	function faculty_staff_taxonomy() {
+	function staff_taxonomy() {
 		
 		$labels = array(
 			'name'              => _x( 'Faculty Categories', 'taxonomy general name' ),
@@ -104,7 +104,7 @@ TAXONOMIES
 			'update_item'       => __( 'Update Faculty Category' ),
 			'add_new_item'      => __( 'Add New Faculty Category' ),
 			'new_item_name'     => __( 'New Faculty Category Name' ),
-			'menu_name'         => __( 'Faculty Category' ),
+			'menu_name'         => __( 'Category' ),
 		);
 		$args = array(
 			'hierarchical'      => true,
@@ -117,41 +117,41 @@ TAXONOMIES
 			'query_var'         => true,
 			'rewrite'           => array( 'slug' => 'faculty' ),
 		);
-		register_taxonomy( 'faculty_staff_categories', array( 'school-staff' ), $args );
+		register_taxonomy( 'staff_categories', array( 'school-staff' ), $args );
 	}
-	add_action( 'init', 'faculty_staff_taxonomy');
+	add_action( 'init', 'staff_taxonomy');
 
 	// Add Administrative Category taxonomy
-	function administrative_staff_taxonomy() {
+	// function administrative_staff_taxonomy() {
 		
-		$labels = array(
-			'name'              => _x( 'Administrative Categories', 'taxonomy general name' ),
-			'singular_name'     => _x( 'Administrative Category', 'taxonomy singular name' ),
-			'search_items'      => __( 'Search Administrative Categories' ),
-			'all_items'         => __( 'All Administrative Category' ),
-			'parent_item'       => __( 'Parent Administrative Category' ),
-			'parent_item_colon' => __( 'Parent Administrative Category:' ),
-			'edit_item'         => __( 'Edit Administrative Category' ),
-			'view_item'         => __( 'View Administrative Category' ),
-			'update_item'       => __( 'Update Administrative Category' ),
-			'add_new_item'      => __( 'Add New Administrative Category' ),
-			'new_item_name'     => __( 'New Administrative Category Name' ),
-			'menu_name'         => __( 'Administrative Category' ),
-		);
-		$args = array(
-			'hierarchical'      => true,
-			'labels'            => $labels,
-			'show_ui'           => true,
-			'show_in_menu'      => true,
-			'show_in_nav_menu'  => true,
-			'show_in_rest'      => true,        
-			'show_admin_column' => true,
-			'query_var'         => true,
-			'rewrite'           => array( 'slug' => 'administrative' ),
-		);
-		register_taxonomy( 'administrative_staff_categories', array( 'school-staff' ), $args );
-	}
-	add_action( 'init', 'administrative_staff_taxonomy');
+	// 	$labels = array(
+	// 		'name'              => _x( 'Administrative Categories', 'taxonomy general name' ),
+	// 		'singular_name'     => _x( 'Administrative Category', 'taxonomy singular name' ),
+	// 		'search_items'      => __( 'Search Administrative Categories' ),
+	// 		'all_items'         => __( 'All Administrative Category' ),
+	// 		'parent_item'       => __( 'Parent Administrative Category' ),
+	// 		'parent_item_colon' => __( 'Parent Administrative Category:' ),
+	// 		'edit_item'         => __( 'Edit Administrative Category' ),
+	// 		'view_item'         => __( 'View Administrative Category' ),
+	// 		'update_item'       => __( 'Update Administrative Category' ),
+	// 		'add_new_item'      => __( 'Add New Administrative Category' ),
+	// 		'new_item_name'     => __( 'New Administrative Category Name' ),
+	// 		'menu_name'         => __( 'Administrative' ),
+	// 	);
+	// 	$args = array(
+	// 		'hierarchical'      => true,
+	// 		'labels'            => $labels,
+	// 		'show_ui'           => true,
+	// 		'show_in_menu'      => true,
+	// 		'show_in_nav_menu'  => true,
+	// 		'show_in_rest'      => true,        
+	// 		'show_admin_column' => true,
+	// 		'query_var'         => true,
+	// 		'rewrite'           => array( 'slug' => 'administrative' ),
+	// 	);
+	// 	register_taxonomy( 'administrative_staff_categories', array( 'school-staff' ), $args );
+	// }
+	// add_action( 'init', 'administrative_staff_taxonomy');
 
 
     // Add Designer Category taxonomy
@@ -223,8 +223,8 @@ TAXONOMIES
     //Rewrite flush 
     function school_rewrite_flush() {
         staff_custom_post_types();
-		faculty_staff_taxonomy();
-		administrative_staff_taxonomy();
+		staff_taxonomy();
+		// administrative_staff_taxonomy();
         designer_student_taxonomy();
         developer_student_taxonomy();
         flush_rewrite_rules();

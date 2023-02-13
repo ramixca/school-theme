@@ -31,11 +31,11 @@ get_header();
             <?php
            
 
-            $args = array (
-                'post_type' => array('post'),
-                'post_per_page' => 2
-            );
-            $blog_query = new WP_Query($args);
+            // $args = array (
+            //     'page_id' => 8,
+            //     'post_per_page' => 3
+            // );
+            $blog_query = new WP_Query(array('page_id' =>8));
             if($blog_query -> have_posts() ) {
                 while($blog_query -> have_post() ) {
                     $blog_query -> get_post();

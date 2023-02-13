@@ -26,25 +26,26 @@ get_header();
     
         ?>
 
-        <section class="recent-news">
+<section class="recent-news">
             <h2><?php esc_html_e('Recent News', 'school')?></h2>
             <?php
-            $args = array (
-                'post_type' => 'post',
-                'post_per_page' => 3
-            );
+           
 
+            $args = array (
+                'post_type' => array('post'),
+                'post_per_page' => 2
+            );
             $blog_query = new WP_Query($args);
             if($blog_query -> have_posts() ) {
                 while($blog_query -> have_post() ) {
                     $blog_query -> get_post();
                     ?>
-                    <article>                        
+                    <div>                        
                         <a href="<?php the_permalink(); ?>">
                             <h3><?php the_title(); ?></h3>
                             <img src="<?php the_post_thumbnail('thumbnail'); ?>">
                         </a>
-                    </article>
+                </div>
                     <?php
                 }
                 wp_reset_postdata();            

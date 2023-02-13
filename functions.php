@@ -46,10 +46,6 @@ function school_setup() {
 		*/
 	add_theme_support( 'post-thumbnails' );
 
-	// Custom Image Crops
-	add_image_size( 'portrait-blog', 200, 250, true );
-	add_image_size( 'portrait-blog-new', 400, 200, true );
-
 	/* Add Wide Width and Full Width for image support*/
 	add_theme_support('align-wide');
 

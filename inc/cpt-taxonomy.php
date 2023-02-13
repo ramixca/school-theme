@@ -98,7 +98,7 @@ TAXONOMIES
 			'parent_item_colon' => __( 'Parent Faculty Category:' ),
 			'edit_item'         => __( 'Edit Faculty Category' ),
 			'view_item'         => __( 'View Faculty Category' ),
-			'update_item'       => __( 'Update FacultyCategory' ),
+			'update_item'       => __( 'Update Faculty Category' ),
 			'add_new_item'      => __( 'Add New Faculty Category' ),
 			'new_item_name'     => __( 'New Faculty Category Name' ),
 			'menu_name'         => __( 'Faculty Category' ),

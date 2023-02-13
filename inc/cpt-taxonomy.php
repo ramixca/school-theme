@@ -76,8 +76,11 @@ function students_custom_post_types() {
 		'hierarchical'       => false,
 		'menu_position'      => 6,
 		'menu_icon'          => 'dashicons-heart',
-		'supports'           => array( 'title' ),
-		// 'template_lock'      => 'all'
+		'supports'           => array( 'title', 'editor' ),
+		'template'           => array(
+									array('core/paragraph'),
+									array('core/buttons')),
+		'template_lock'      => 'all'
 	);
 	register_post_type( 'school-students', $args );
 }

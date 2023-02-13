@@ -44,24 +44,15 @@ get_header();
 								<th>Instructor</th>
 							</tr>
 						</thead>
-						<tbody>						
+						<tbody>		
 					
 					<?php 
-						while( have_rows('schedule') ) : the_row();
-
-						// Load sub field value.
-						$date       = get_sub_field('date');
-						$course     = get_sub_field('course');
-						$instructor = get_sub_field('instructor');
-						
-						// Do something...
-					
-						echo '<tr>';
-						echo '<td>' .$date. '</td>';
-						echo '<td>' .$course. '</td>';
-						echo '<td>' .$instructor. '</td>';
-						echo '</tr>';
-						?>
+						while( have_rows('schedule') ) : the_row();?>
+							<tr>
+								<td><?php echo get_sub_field('date'); ?></td>
+								<td><?php echo get_sub_field('course'); ?></td>
+								<td><?php echo get_sub_field('instructor'); ?></td>
+							</tr>
 						</tbody>
 						<?php
 				

@@ -31,11 +31,6 @@ get_header();
 		endwhile; // End of the loop.
 		?>
 
-		<?php
-
-		
-		?>
-
 	</main><!-- #main -->
 
 <?php

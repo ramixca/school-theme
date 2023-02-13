@@ -58,6 +58,7 @@ function students_custom_post_types() {
 		'parent_item_colon'  => __( 'Parent Student:' ),
 		'not_found'          => __( 'No Student found.' ),
 		'not_found_in_trash' => __( 'No Student found in Trash.' ),
+		'featured_image'     => __( 'Student featured image'),
 	);
 
 	$args = array(
@@ -79,7 +80,8 @@ function students_custom_post_types() {
 		'supports'           => array( 'title', 'editor' ),
 		'template'           => array(
 									array('core/paragraph'),
-									array('core/buttons')),
+									array('core/buttons'),
+									array('core/image')), // Need to confirm in requeriment.
 		'template_lock'      => 'all'
 	);
 	register_post_type( 'school-students', $args );
@@ -115,7 +117,7 @@ TAXONOMIES
 			'show_in_rest'      => true,        
 			'show_admin_column' => true,
 			'query_var'         => true,
-			'rewrite'           => array( 'slug' => 'faculty' ),
+			'rewrite'           => array( 'slug' => 'staff-category' ),
 		);
 		register_taxonomy( 'staff_categories', array( 'school-staff' ), $args );
 	}
@@ -155,7 +157,7 @@ TAXONOMIES
 
 
     // Add Designer Category taxonomy
-	function designer_student_taxonomy() {
+	function student_taxonomy() {
 	
 		$labels = array(
 			'name'              => _x( 'Designer Categories', 'taxonomy general name' ),
@@ -169,7 +171,7 @@ TAXONOMIES
 			'update_item'       => __( 'Update Designer Category' ),
 			'add_new_item'      => __( 'Add New Designer Category' ),
 			'new_item_name'     => __( 'New Designer Category Name' ),
-			'menu_name'         => __( 'Designer Category' ),
+			'menu_name'         => __( 'Student Category' ),
 		);
 		$args = array(
 			'hierarchical'      => true,
@@ -180,44 +182,44 @@ TAXONOMIES
 			'show_in_rest'      => true,        
 			'show_admin_column' => true,
 			'query_var'         => true,
-			'rewrite'           => array( 'slug' => 'designer' ),
+			'rewrite'           => array( 'slug' => 'student-type' ),
 		);
-		register_taxonomy( 'designer_student_categories', array( 'school-students' ), $args );
+		register_taxonomy( 'student_categories', array( 'school-students' ), $args );
 	}
-	add_action( 'init', 'designer_student_taxonomy');
+	add_action( 'init', 'student_taxonomy');
 
 
-	    // Add Developer Category taxonomy
-		function developer_student_taxonomy() {
+	    // // Add Developer Category taxonomy
+		// function developer_student_taxonomy() {
 	
-			$labels = array(
-				'name'              => _x( 'Developer Categories', 'taxonomy general name' ),
-				'singular_name'     => _x( 'Developer Category', 'taxonomy singular name' ),
-				'search_items'      => __( 'Search Developer Categories' ),
-				'all_items'         => __( 'All Developer Category' ),
-				'parent_item'       => __( 'Parent Developer Category' ),
-				'parent_item_colon' => __( 'Parent Developer Category:' ),
-				'edit_item'         => __( 'Edit Developer Category' ),
-				'view_item'         => __( 'View Developer Category' ),
-				'update_item'       => __( 'Update Developer Category' ),
-				'add_new_item'      => __( 'Add New Developer Category' ),
-				'new_item_name'     => __( 'New Developer Category Name' ),
-				'menu_name'         => __( 'Developer Category' ),
-			);
-			$args = array(
-				'hierarchical'      => true,
-				'labels'            => $labels,
-				'show_ui'           => true,
-				'show_in_menu'      => true,
-				'show_in_nav_menu'  => true,
-				'show_in_rest'      => true,        
-				'show_admin_column' => true,
-				'query_var'         => true,
-				'rewrite'           => array( 'slug' => 'developer' ),
-			);
-			register_taxonomy( 'developer_student_categories', array( 'school-students' ), $args );
-		}
-		add_action( 'init', 'developer_student_taxonomy');
+		// 	$labels = array(
+		// 		'name'              => _x( 'Developer Categories', 'taxonomy general name' ),
+		// 		'singular_name'     => _x( 'Developer Category', 'taxonomy singular name' ),
+		// 		'search_items'      => __( 'Search Developer Categories' ),
+		// 		'all_items'         => __( 'All Developer Category' ),
+		// 		'parent_item'       => __( 'Parent Developer Category' ),
+		// 		'parent_item_colon' => __( 'Parent Developer Category:' ),
+		// 		'edit_item'         => __( 'Edit Developer Category' ),
+		// 		'view_item'         => __( 'View Developer Category' ),
+		// 		'update_item'       => __( 'Update Developer Category' ),
+		// 		'add_new_item'      => __( 'Add New Developer Category' ),
+		// 		'new_item_name'     => __( 'New Developer Category Name' ),
+		// 		'menu_name'         => __( 'Developer Category' ),
+		// 	);
+		// 	$args = array(
+		// 		'hierarchical'      => true,
+		// 		'labels'            => $labels,
+		// 		'show_ui'           => true,
+		// 		'show_in_menu'      => true,
+		// 		'show_in_nav_menu'  => true,
+		// 		'show_in_rest'      => true,        
+		// 		'show_admin_column' => true,
+		// 		'query_var'         => true,
+		// 		'rewrite'           => array( 'slug' => 'developer' ),
+		// 	);
+		// 	register_taxonomy( 'developer_student_categories', array( 'school-students' ), $args );
+		// }
+		// add_action( 'init', 'developer_student_taxonomy');
 
 
     //Rewrite flush 
@@ -225,8 +227,8 @@ TAXONOMIES
         staff_custom_post_types();
 		staff_taxonomy();
 		// administrative_staff_taxonomy();
-        designer_student_taxonomy();
-        developer_student_taxonomy();
+        student_taxonomy();
+        // developer_student_taxonomy();
         flush_rewrite_rules();
         
     }

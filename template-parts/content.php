@@ -29,12 +29,12 @@
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 
-	
+	<?php school-theme_post_thumbnail();?>
 
 	<div class="entry-content">
 		<?php
 		
-		the_content(
+		the_excerpt();(
 			sprintf(
 				wp_kses(
 					/* translators: %s: Name of current post. Only visible to screen readers */

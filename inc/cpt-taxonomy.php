@@ -97,7 +97,7 @@ function students_custom_post_types() {
 			'hierarchical'       => false,
 			'menu_position'      => 6,
 			'menu_icon'          => 'dashicons-heart',
-			'supports'           => array( 'title', 'editor' ),
+			'supports'           => array( 'title', 'editor', 'thumbnail' ),
 			'template'           => array(
 										array('core/paragraph'),
 										array('core/buttons')),

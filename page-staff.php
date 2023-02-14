@@ -17,12 +17,19 @@ get_header();
 
 <main id="primary" class="site-main">
 	 
-	
+<?php
+    while ( have_posts()):
+        the_post();
+        the_title();
+              
+        get_template_part('template-parts/content','page');
+    
+        ?>
 
 		
 	 <header class="page-header">
 			 <?php
-			 the_archive_title( '<h1 class="page-title">', '</h1>' );
+			//  the_archive_title( '<h1 class="page-title">', '</h1>' );
 			 the_archive_description( '<div class="archive-description">', '</div>' );
 			 ?>
 		 </header><!-- .page-header -->
@@ -55,10 +62,15 @@ get_header();
 					 );
 
 					 $query = new WP_Query($args);
-						 echo "<h2>" .$term->name. "</h2>";
+						 echo "<h2>" .esc_html($term->name). "</h2>";
 					 if ( $query -> have_posts() ) {
 						 while ($query -> have_posts() ) {
-							 $query -> the_post();					
+							 $query -> the_post();				
+							 
+							//  if( function_exists('get_field')) {
+							// 	if(get_field('biography'))
+							// 	the_field('biography');
+							//  }
 					 }
 					 wp_reset_postdata();
 				 
@@ -75,6 +87,8 @@ get_header();
 					 <article class="staff" id="<?php echo get_the_ID();?>">
 						 <h3><?php the_title(); ?></h3>
 						 <p><?php the_content(); ?></p>
+						 <p><?php the_field('biography'); ?></p>
+						 
 						 
 						 
 					 </article>
@@ -85,7 +99,7 @@ get_header();
 
 				 }
 			 }
-			 
+			endwhile;
 			 ?>
 
 		 </div>
@@ -101,5 +115,5 @@ get_header();
  </main>
 
 <?php
-get_sidebar();
-get_footer();
+// get_sidebar();
+// get_footer();

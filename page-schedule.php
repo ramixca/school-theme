@@ -51,11 +51,13 @@ get_header();
 								<td><?php echo get_sub_field('course'); ?></td>
 								<td><?php echo get_sub_field('instructor'); ?></td>
 							</tr>
-						</tbody>
+						
 						<?php
 				
 				endwhile;
-
+				?>
+				</tbody>
+				<?php
 			else:
 
 			endif;

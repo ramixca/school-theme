@@ -44,7 +44,7 @@ function school_setup() {
 		*
 		* @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		*/
-	add_theme_support( 'post-thumbnails' );
+		add_theme_support( 'post-thumbnails' );
 
 	/* Add Wide Width and Full Width for image support*/
 	add_theme_support('align-wide');

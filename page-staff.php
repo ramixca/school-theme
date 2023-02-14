@@ -15,23 +15,90 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
+<main id="primary" class="site-main">
+	 
+	
 
-		<?php
-		while ( have_posts() ) :
-			the_post();
+		
+	 <header class="page-header">
+			 <?php
+			 the_archive_title( '<h1 class="page-title">', '</h1>' );
+			 the_archive_description( '<div class="archive-description">', '</div>' );
+			 ?>
+		 </header><!-- .page-header -->
+	 
+	 <article id="post-<?php the_ID(); ?>" <?php post_class();?>>
+		 <div class="entry-content">
+		 
 
-			get_template_part( 'template-parts/content', 'page' );
+			 <?php
+			 $terms = get_terms(
+						 array(
+							 'taxonomy' => 'staff_categories',
+						 )
+					  );
 
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-				comments_template();
-			endif;
+			 if ($terms && ! is_wp_error( $terms )) {
+				 foreach ( $terms as $term) {
+					 $args = array(
+						 'post_type'      => 'school-staff',
+						 'posts_per_page' => -1,
+						 'orderby' => 'title',
+						 'tax_query'  => array(
+							 array(
+								 'taxonomy'  => 'staff_categories',
+								 'field'     => 'slug',
+								 'terms'     => $term->slug,
+							 )
+						 )
 
-		endwhile; // End of the loop.
-		?>
+					 );
 
-	</main><!-- #main -->
+					 $query = new WP_Query($args);
+						 echo "<h2>" .$term->name. "</h2>";
+					 if ( $query -> have_posts() ) {
+						 while ($query -> have_posts() ) {
+							 $query -> the_post();					
+					 }
+					 wp_reset_postdata();
+				 
+				 }
+			 
+
+				 $query = new WP_Query($args); 
+			 if($query -> have_posts() ) { 
+				 
+				 
+				 while ($query -> have_posts() ) {
+					 $query -> the_post();
+					 ?>
+					 <article class="staff" id="<?php echo get_the_ID();?>">
+						 <h3><?php the_title(); ?></h3>
+						 <p><?php the_content(); ?></p>
+						 
+						 
+					 </article>
+				 <?php
+				 }
+				 wp_reset_postdata();
+			 }
+
+				 }
+			 }
+			 
+			 ?>
+
+		 </div>
+ 
+ 
+ 
+ 
+	 </article>
+
+
+ 
+
+ </main>
 
 <?php
 get_sidebar();

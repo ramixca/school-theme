@@ -29,11 +29,11 @@
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 
-	<?php school-theme_post_thumbnail();?>
+
 
 	<div class="entry-content">
 		<?php
-		
+		the_post_thumbnail('large');
 		the_excerpt();(
 			sprintf(
 				wp_kses(
@@ -64,3 +64,6 @@
 </article>
 
 <?php
+get_sidebar();
+get_footer();
+

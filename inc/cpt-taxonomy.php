@@ -147,18 +147,18 @@ TAXONOMIES
 	function student_taxonomy() {
 	
 		$labels = array(
-			'name'              => _x( 'Designer Categories', 'taxonomy general name' ),
-			'singular_name'     => _x( 'Designer Category', 'taxonomy singular name' ),
-			'search_items'      => __( 'Search Designer Categories' ),
-			'all_items'         => __( 'All Designer Category' ),
-			'parent_item'       => __( 'Parent Designer Category' ),
-			'parent_item_colon' => __( 'Parent Designer Category:' ),
-			'edit_item'         => __( 'Edit Designer Category' ),
-			'view_item'         => __( 'View Designer Category' ),
-			'update_item'       => __( 'Update Designer Category' ),
-			'add_new_item'      => __( 'Add New Designer Category' ),
-			'new_item_name'     => __( 'New Designer Category Name' ),
-			'menu_name'         => __( 'Student Category' ),
+			'name'              => _x( 'Student Categories', 'taxonomy general name' ),
+			'singular_name'     => _x( 'Student Category', 'taxonomy singular name' ),
+			'search_items'      => __( 'Search Student Categories' ),
+			'all_items'         => __( 'All Student Category' ),
+			'parent_item'       => __( 'Parent Student Category' ),
+			'parent_item_colon' => __( 'Parent Student Category:' ),
+			'edit_item'         => __( 'Edit Student Category' ),
+			'view_item'         => __( 'View Student Category' ),
+			'update_item'       => __( 'Update Student Category' ),
+			'add_new_item'      => __( 'Add New Student Category' ),
+			'new_item_name'     => __( 'New Student Category Name' ),
+			'menu_name'         => __( 'Students' ),
 		);
 		$args = array(
 			'hierarchical'      => true,

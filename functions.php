@@ -184,7 +184,7 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 
 // Change excerpt length to 20 characters
 function school_excerpt_lenght($length) {
-	return 50;
+	return 25;
 }
 
 add_filter('excerpt_length', 'school_excerpt_lenght', 999 );

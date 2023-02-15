@@ -12,15 +12,19 @@ get_header();
 
 	<main id="primary" class="site-main">
 
-		<?php
-		while ( have_posts() ) :
-			the_post();			
-			the_content();
-			the_post_thumbnail('single-student');
+		<?php while ( have_posts() ) : ?>
+			<article>
+				<header>
+					<h2><?php the_title(); ?></h2>
+				</header>
+					<?php the_post(); ?>
+					<?php the_content(); ?>
+					<?php the_post_thumbnail('single-student'); ?>
+			</article>
 
 		
 			
-
+<?php
 			the_post_navigation(
 				array(
 					'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Previous:', 'school' ) . '</span> <span class="nav-title">%title</span>',

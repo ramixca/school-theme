@@ -17,7 +17,7 @@ get_header();
 
 	<main id="primary" class="site-main">
 	 
-		<?php while ( have_posts() ) : the_post(); ?>
+	
 
 		
 		<header class="page-header">
@@ -34,19 +34,20 @@ get_header();
 				<?php
 				$terms = get_terms(
 							array(
-								'taxonomy' => 'staff_categories',
+								'taxonomy' => 'student_categories'
 							)
 						 );
 
 				if ($terms && ! is_wp_error( $terms )) {
 					foreach ( $terms as $term) {
 						$args = array(
-							'post_type'      => 'school-staff',
+							'post_type'      => 'school-students',
 							'posts_per_page' => -1,
-							'orderby' => 'title',
-							'tax_query'  => array(
+							'order'          => 'ASC',
+							'orderby'        => 'title',
+							'tax_query'      => array(
 								array(
-									'taxonomy'  => 'staff_categories',
+									'taxonomy'  => 'student_categories',
 									'field'     => 'slug',
 									'terms'     => $term->slug,
 								)
@@ -72,9 +73,14 @@ get_header();
 					while ($query -> have_posts() ) {
 						$query -> the_post();
 						?>
-						<article class="staff" id="<?php echo get_the_ID();?>">
-							<h3><?php the_title(); ?></h3>
-							<p><?php the_content(); ?></p>
+						<article class="students" id="<?php echo get_the_ID();?>">
+							<a href=<?php the_permalink(); ?>
+							<h3><?php the_title(); ?></h3></a>
+							<?php the_post_thumbnail('thumbnail'); ?>
+							</a>
+							<p><?php the_excerpt(); ?></p>
+							
+							<p>Specialty: <?php echo "<a href=''>" .$term->name. "</a>"; ?></p>
 							
 						</article>
 					<?php
@@ -95,7 +101,7 @@ get_header();
 		</article>
 
 
-	<?php endwhile;?>
+
 
 	</main>
 

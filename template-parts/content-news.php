@@ -13,9 +13,9 @@
 		<?php	while ($query -> have_posts() ) {
 				$query -> the_post();?>
 				<a href="<?php the_permalink();?>">
+				    <img><?php the_post_thumbnail( 'thumbnail' ); ?></img>
                     <h3><?php the_title();?></h3>
-				<img><?php the_post_thumbnail( 'thumbnail' ); ?></img>
-        </a>
+                </a>
                 <?php
                
 			}

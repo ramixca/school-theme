@@ -57,6 +57,9 @@ get_header();
         <?php
     endwhile;
     ?>
+    <section>
+        <?php get_template_part('template-parts/content-news'); ?>
+    </section>
     </main>
 
     <?php

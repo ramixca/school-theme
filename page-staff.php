@@ -88,6 +88,8 @@ get_header();
 						 <h3><?php the_title(); ?></h3>
 						 <p><?php the_content(); ?></p>
 						 <p><?php the_field('biography'); ?></p>
+						 <p><?php the_field('course'); ?></p>
+						 <A><?php the_field('website'); ?></a>
 						 
 						 
 						 

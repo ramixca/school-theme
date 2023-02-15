@@ -17,6 +17,22 @@ get_header();
 
 	<main id="primary" class="site-main">
 	 
+	<?php 
+	
+		function mytheme_custom_excerpt_length( $length ) {
+			return 25;
+		}
+		add_filter( 'excerpt_length', 'mytheme_custom_excerpt_length', 999 );
+	
+	
+
+		function fwd_excerpt_more ($more) {
+			$more = '...<a class="read-more" href="'. esc_url(get_permalink()) .'">Continue Reading about '. get_the_title().'</a>';
+			return $more;
+		}
+		add_filter('excerpt_more', 'fwd_excerpt_more');
+
+	?>
 	
 
 		

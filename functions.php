@@ -182,20 +182,4 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 
  require get_template_directory(). '/inc/cpt-taxonomy.php';
 
-// Change excerpt length to 20 characters
-function school_excerpt_lenght($length) {
-	return 25;
-}
-
-add_filter('excerpt_length', 'school_excerpt_lenght', 999 );
-
-// //Change the excerpt more to a link
-// function fwd_excerpt_more ($more) {
-// 		$more = '...<a class="read-more" href="'. esc_url(get_permalink()) .'">Continue Reading about '. get_the_title().'</a>';
-// 		return $more;
-// }
-
-// add_filter('excerpt_more', 'fwd_excerpt_more');
-
-
-	?>
+?>

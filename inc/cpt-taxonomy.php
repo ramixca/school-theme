@@ -142,38 +142,6 @@ TAXONOMIES
 	}
 	add_action( 'init', 'staff_taxonomy');
 
-	// Add Administrative Category taxonomy
-	// function administrative_staff_taxonomy() {
-		
-	// 	$labels = array(
-	// 		'name'              => _x( 'Administrative Categories', 'taxonomy general name' ),
-	// 		'singular_name'     => _x( 'Administrative Category', 'taxonomy singular name' ),
-	// 		'search_items'      => __( 'Search Administrative Categories' ),
-	// 		'all_items'         => __( 'All Administrative Category' ),
-	// 		'parent_item'       => __( 'Parent Administrative Category' ),
-	// 		'parent_item_colon' => __( 'Parent Administrative Category:' ),
-	// 		'edit_item'         => __( 'Edit Administrative Category' ),
-	// 		'view_item'         => __( 'View Administrative Category' ),
-	// 		'update_item'       => __( 'Update Administrative Category' ),
-	// 		'add_new_item'      => __( 'Add New Administrative Category' ),
-	// 		'new_item_name'     => __( 'New Administrative Category Name' ),
-	// 		'menu_name'         => __( 'Administrative' ),
-	// 	);
-	// 	$args = array(
-	// 		'hierarchical'      => true,
-	// 		'labels'            => $labels,
-	// 		'show_ui'           => true,
-	// 		'show_in_menu'      => true,
-	// 		'show_in_nav_menu'  => true,
-	// 		'show_in_rest'      => true,        
-	// 		'show_admin_column' => true,
-	// 		'query_var'         => true,
-	// 		'rewrite'           => array( 'slug' => 'administrative' ),
-	// 	);
-	// 	register_taxonomy( 'administrative_staff_categories', array( 'school-staff' ), $args );
-	// }
-	// add_action( 'init', 'administrative_staff_taxonomy');
-
 
     // Add Designer Category taxonomy
 	function student_taxonomy() {
@@ -207,47 +175,11 @@ TAXONOMIES
 	}
 	add_action( 'init', 'student_taxonomy');
 
-
-	    // // Add Developer Category taxonomy
-		// function developer_student_taxonomy() {
-	
-		// 	$labels = array(
-		// 		'name'              => _x( 'Developer Categories', 'taxonomy general name' ),
-		// 		'singular_name'     => _x( 'Developer Category', 'taxonomy singular name' ),
-		// 		'search_items'      => __( 'Search Developer Categories' ),
-		// 		'all_items'         => __( 'All Developer Category' ),
-		// 		'parent_item'       => __( 'Parent Developer Category' ),
-		// 		'parent_item_colon' => __( 'Parent Developer Category:' ),
-		// 		'edit_item'         => __( 'Edit Developer Category' ),
-		// 		'view_item'         => __( 'View Developer Category' ),
-		// 		'update_item'       => __( 'Update Developer Category' ),
-		// 		'add_new_item'      => __( 'Add New Developer Category' ),
-		// 		'new_item_name'     => __( 'New Developer Category Name' ),
-		// 		'menu_name'         => __( 'Developer Category' ),
-		// 	);
-		// 	$args = array(
-		// 		'hierarchical'      => true,
-		// 		'labels'            => $labels,
-		// 		'show_ui'           => true,
-		// 		'show_in_menu'      => true,
-		// 		'show_in_nav_menu'  => true,
-		// 		'show_in_rest'      => true,        
-		// 		'show_admin_column' => true,
-		// 		'query_var'         => true,
-		// 		'rewrite'           => array( 'slug' => 'developer' ),
-		// 	);
-		// 	register_taxonomy( 'developer_student_categories', array( 'school-students' ), $args );
-		// }
-		// add_action( 'init', 'developer_student_taxonomy');
-
-
     //Rewrite flush 
     function school_rewrite_flush() {
         staff_custom_post_types();
-		staff_taxonomy();
-		// administrative_staff_taxonomy();
-        student_taxonomy();
-        // developer_student_taxonomy();
+		staff_taxonomy();	
+        student_taxonomy();        
         flush_rewrite_rules();
         
     }

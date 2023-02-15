@@ -66,11 +66,6 @@ get_header();
 					 if ( $query -> have_posts() ) {
 						 while ($query -> have_posts() ) {
 							 $query -> the_post();				
-							 
-							//  if( function_exists('get_field')) {
-							// 	if(get_field('biography'))
-							// 	the_field('biography');
-							//  }
 					 }
 					 wp_reset_postdata();
 				 
@@ -86,10 +81,9 @@ get_header();
 					 ?>
 					 <article class="staff" id="<?php echo get_the_ID();?>">
 						 <h3><?php the_title(); ?></h3>
-						 <p><?php the_content(); ?></p>
 						 <p><?php the_field('biography'); ?></p>
 						 <p><?php the_field('course'); ?></p>
-						 <A><?php the_field('website'); ?></a>
+						 <a><?php the_field('website'); ?></a>
 						 
 						 
 						 

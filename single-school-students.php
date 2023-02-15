@@ -14,9 +14,12 @@ get_header();
 
 		<?php
 		while ( have_posts() ) :
-			the_post();
+			the_post();			
+			the_content();
+			the_post_thumbnail('single-student');
 
-			get_template_part( 'template-parts/content', get_post_type() );
+		
+			
 
 			the_post_navigation(
 				array(
@@ -32,9 +35,9 @@ get_header();
 
 		endwhile; // End of the loop.
 		?>
-
+			
 	</main><!-- #main -->
 
 <?php
-get_sidebar();
-get_footer();
+// get_sidebar();
+// get_footer();

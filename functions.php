@@ -133,6 +133,11 @@ add_action( 'widgets_init', 'school_widgets_init' );
  * Enqueue scripts and styles.
  */
 function school_scripts() {
+	wp_enqueue_style('fwd-googlefonts', '<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Ubuntu:wght@700&display=swap"',
+	array(),
+	null
+	);
+
 	wp_enqueue_style( 'school-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'school-style', 'rtl', 'replace' );
 
@@ -176,10 +181,16 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+
+
+add_filter( 'get_the_archive_title_prefix', '__return_empty_string' );
+
 /**
  * Custom Post types & Taxonomies
  */
 
  require get_template_directory(). '/inc/cpt-taxonomy.php';
 
+
+ require get_template_directory() . '/inc/class-fwd-add-sub-menu-button-walker.php';
 ?>

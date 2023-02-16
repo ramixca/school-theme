@@ -26,24 +26,19 @@ get_header();
     
         ?>
 
-<section class="recent-news">
-            <h2><?php esc_html_e('Recent News', 'school')?></h2>
-            <?php
-           
-
-            // $args = array (
-            //     'page_id' => 8,
-            //     'post_per_page' => 3
-            // );
-            $blog_query = new WP_Query(array('page_id' =>8));
-            if($blog_query -> have_posts() ) {
-                while($blog_query -> have_post() ) {
-                    $blog_query -> get_post();
-                    ?>
+<h2><?php esc_html_e('Recent News', 'school')?></h2>
+<?php
+          
+          $blog_query = new WP_Query(array('page_id' =>8));
+          if($blog_query -> have_posts() ) { 
+              while($blog_query -> have_post() ) {
+                  $blog_query -> get_post();
+                  ?>
                     <div>                        
+                        
                         <a href="<?php the_permalink(); ?>">
                             <h3><?php the_title(); ?></h3>
-                            <img src="<?php the_post_thumbnail('thumbnail'); ?>">
+                            <?php the_post_thumbnail('thumbnail'); ?>
                         </a>
                 </div>
                     <?php
@@ -52,7 +47,7 @@ get_header();
             }
             
             ?>
-        </section>
+       
 
         <?php
     endwhile;

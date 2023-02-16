@@ -207,6 +207,7 @@ input,
 optgroup,
 select,
 textarea {
+	font-family: 'Open Sans', sans-serif;		
 	font-family: inherit;
 	font-size: 100%;
 	line-height: 1.15;
@@ -414,7 +415,10 @@ h3,
 h4,
 h5,
 h6 {
+	font-family: 'Open Sans', sans-serif;
 	clear: both;
+	color:red;
+	
 }
 
 p {
@@ -469,6 +473,7 @@ big {
 	font-size: 125%;
 }
 
+
 /* Elements
 --------------------------------------------- */
 body {
@@ -499,6 +504,7 @@ li > ul,
 li > ol {
 	margin-bottom: 0;
 	margin-left: 1.5em;
+	position:relative;
 }
 
 dt {
@@ -647,6 +653,23 @@ textarea {
 
 /* Navigation
 --------------------------------------------- */
+
+.site-header {
+	background: black;
+	color: white;
+	margin: none;
+	width: 100%;
+	height: 60px;
+	position: flex;
+	border-top: 3px solid #4c0a8e;
+   
+
+}
+
+.site-title {
+	margin-top: 0;
+}
+
 .main-navigation {
 	display: block;
 	width: 100%;
@@ -659,35 +682,6 @@ textarea {
 	padding-left: 0;
 }
 
-.main-navigation ul ul {
-	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-	float: left;
-	position: absolute;
-	top: 100%;
-	left: -999em;
-	z-index: 99999;
-}
-
-.main-navigation ul ul ul {
-	left: -999em;
-	top: 0;
-}
-
-.main-navigation ul ul li:hover > ul,
-.main-navigation ul ul li.focus > ul {
-	display: block;
-	left: auto;
-}
-
-.main-navigation ul ul a {
-	width: 200px;
-}
-
-.main-navigation ul li:hover > ul,
-.main-navigation ul li.focus > ul {
-	left: auto;
-}
-
 .main-navigation li {
 	position: relative;
 }
@@ -695,9 +689,24 @@ textarea {
 .main-navigation a {
 	display: block;
 	text-decoration: none;
+	padding: 1rem;
+	text-align: center;
+	color: white;
 }
 
-/* Small menu. */
+.main-navigation ul ul {
+	position: absolute;
+	top: 100%;
+	left: -999em;
+    /* The other half of these styles are in the media query */
+}
+
+/* The selector for .toggled has been added */
+.main-navigation ul li.focus > ul,
+.main-navigation ul li.toggled > ul {
+	position: static;
+}
+
 .menu-toggle,
 .main-navigation.toggled ul {
 	display: block;
@@ -705,41 +714,55 @@ textarea {
 
 @media screen and (min-width: 37.5em) {
 
-	.menu-toggle {
-		display: none;
+	.main-navigation ul ul {
+		box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+		float: left;
+		z-index: 99999;
+	}
+	
+	.main-navigation ul ul a {
+		width: 200px;
+	}
+	
+    /* The selector for .toggled has been added */
+	.main-navigation ul li:hover > ul,
+	.main-navigation ul li.focus > ul,
+	.main-navigation ul li.toggled > ul {
+		position: absolute;
+		left: auto;
 	}
 
+	.main-navigation ul ul ul {
+		left: -999em;
+		top: 0;
+	}
+
+	.main-navigation ul ul li:hover > ul,
+	.main-navigation ul ul li.focus > ul {
+		display: block;
+		left: auto;
+	}
+
+	.menu-toggle,
+	.sub-menu-toggle {
+		display: none;
+	}
+	
 	.main-navigation ul {
 		display: flex;
 	}
 }
 
-.site-main .comment-navigation,
-.site-main
-.posts-navigation,
-.site-main
-.post-navigation {
-	margin: 0 0 1.5em;
+@media screen and (min-width: 37.5em) {
+
+	.site-header{
+	display: grid;
+    grid-template-columns: 1fr minmax(auto, 12.5rem) minmax(auto, 50rem) 1fr;
+    align-items: center;
+	}
 }
 
-.comment-navigation .nav-links,
-.posts-navigation .nav-links,
-.post-navigation .nav-links {
-	display: flex;
-}
 
-.comment-navigation .nav-previous,
-.posts-navigation .nav-previous,
-.post-navigation .nav-previous {
-	flex: 1 0 50%;
-}
-
-.comment-navigation .nav-next,
-.posts-navigation .nav-next,
-.post-navigation .nav-next {
-	text-align: end;
-	flex: 1 0 50%;
-}
 
 /* Posts and pages
 --------------------------------------------- */

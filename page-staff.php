@@ -29,10 +29,10 @@ get_header();
 		
 	 <header class="page-header">
 			 <?php
-			//  the_archive_title( '<h1 class="page-title">', '</h1>' );
+			
 			 the_archive_description( '<div class="archive-description">', '</div>' );
 			 ?>
-		 </header><!-- .page-header -->
+		 </header>
 	 
 	 <article id="post-<?php the_ID(); ?>" <?php post_class();?>>
 		 <div class="entry-content">
@@ -77,16 +77,12 @@ get_header();
 				 
 				 
 				 while ($query -> have_posts() ) {
-					 $query -> the_post();
-					 ?>
+					 $query -> the_post(); ?>
 					 <article class="staff" id="<?php echo get_the_ID();?>">
 						 <h3><?php the_title(); ?></h3>
 						 <p><?php the_field('biography'); ?></p>
 						 <p><?php the_field('course'); ?></p>
 						 <a><?php the_field('website'); ?></a>
-						 
-						 
-						 
 					 </article>
 				 <?php
 				 }
@@ -110,6 +106,3 @@ get_header();
 
  </main>
 
-<?php
-// get_sidebar();
-// get_footer();

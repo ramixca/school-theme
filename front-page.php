@@ -56,7 +56,3 @@ get_header();
         <?php get_template_part('template-parts/content-news'); ?>
     
     </main>
-
-    <?php
-// get_sidebar();
-// get_footer();
